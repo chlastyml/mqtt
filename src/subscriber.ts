@@ -1,18 +1,17 @@
 import { connect } from 'mqtt'
 import { unpack } from "msgpack";
+import config from "./config";
 
-const baseUrl = process.env.URL
-
-if(!baseUrl) {
+if(!config.url) {
   throw new Error('Enviromental variable "URL" is not set')
 }
 
-const url = baseUrl.startsWith('mqtt://') ? baseUrl : `mqtt://${baseUrl}`
+const url = config.url.startsWith('mqtt://') ? config.url : `mqtt://${config.url}`
 
 const client = connect(url, { clientId: 'subscriber' })
 
 client.on('connect', function () {
-  console.log(`Connection to ${baseUrl} is succesful`)
+  console.log(`Connection to ${config.url} is succesful`)
   client.subscribe('#')
 })
 

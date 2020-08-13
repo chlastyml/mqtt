@@ -10,6 +10,14 @@
     "mosca": "^2.8.3",
     "mqtt": "^4.1.0",
     "mqtt-server": "^0.1.0",
-    "msgpack": "^1.0.3"
+    "msgpack": "^1.0.3",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
+  },
+  "scripts": {
+    "start": "ts-node src/broker.ts",
+    "start:subcriber": "ts-node src/subscriber.ts",
+    "start:publisher": "ts-node src/publisher.ts",
+    "start:subsystem": "ts-node src/subscriber_system.ts"
   }
 }

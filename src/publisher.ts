@@ -1,8 +1,9 @@
 import { connect } from 'mqtt'
 import { pack } from "msgpack";
+import config from './config'
 
-const settings = { clientId: 'publisher', url: 'mqtt://broker.hivemq.com' }
-const client = connect(settings.url, settings)
+const settings = { clientId: 'publisher' }
+const client = connect(config.url, settings)
 
 function makeid() {
   const length = Math.floor(Math.random() * 8 + 1)
@@ -49,7 +50,7 @@ const sendMessageDelayed = () => {
 
 const testSendMessages = () => {
   client.on('connect', (packet) => {
-    console.log(`Connected to ${settings.url}`)
+    console.log(`Connected to ${config.url}`)
     sendMessageDelayed()
     // packet is CONNACK message
     // setInterval(() => {

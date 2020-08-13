@@ -1,7 +1,8 @@
 import { Server } from 'mosca'
+import { unpack } from "msgpack";
 
 var settings = {
-  id: 'kacalek',
+  id: 'broker',
   port: 1883,
   stats: false,
 }
@@ -25,6 +26,6 @@ server.on('published', (packet, client) => {
     // Systemove zpravy vypisujeme v celku
     console.log(`${'#'.repeat(50)}\n`, 'packet', packet, `\n${'#'.repeat(50)}`)
   } else {
-    console.log('topis:', packet.topic, '| ID:', packet.messageId, '| message:', packet.payload.toString())
+    console.log('topis:', packet.topic, '| ID:', packet.messageId, '| message:', unpack(packet.payload))
   }
 })
